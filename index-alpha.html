@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="en" data-variant="alpha">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AmtocSoft — Content Automation Pipeline Starter Kit</title>
+  <meta name="description" content="146 blog posts. 92 videos. 31 podcasts. 24 days. Get the exact system, scripts, and templates used to build a fully automated AI content pipeline from scratch.">
+  <meta property="og:title" content="AmtocSoft — Content Automation Pipeline Starter Kit">
+  <meta property="og:description" content="The complete blueprint for building an AI-powered content machine. Modules, scripts, templates, and automation workflows.">
+  <meta property="og:url" content="https://amtocsoft.com">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="AmtocSoft — Content Automation Pipeline Starter Kit">
+  <meta name="twitter:description" content="146 blog posts. 92 videos. 31 podcasts. 24 days. The exact system behind it all.">
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- Particle overlay -->
+<canvas id="particles-canvas"></canvas>
+
+<!-- Pipeline progress indicator (fixed left sidebar) -->
+<div class="pipeline-progress">
+  <div class="pipe-line">
+    <div class="pipe-fill"></div>
+  </div>
+  <div class="pipe-node active" data-node="0"></div>
+  <div class="pipe-node" data-node="1"></div>
+  <div class="pipe-node" data-node="2"></div>
+  <div class="pipe-node" data-node="3"></div>
+  <div class="pipe-node" data-node="4"></div>
+</div>
+
+<!-- ========== NAVIGATION ========== -->
+<nav class="nav">
+  <div class="container">
+    <a href="#" class="nav-logo">
+      <svg width="32" height="32" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <circle cx="18" cy="18" r="17" stroke="url(#logoGradA)" stroke-width="2"/>
+        <path d="M12 14c0-3.3 2.7-6 6-6s6 2.7 6 6c0 2-1 3.8-2.5 4.9.3.2.5.5.5.9v2.2c0 1.7-1.3 3-3 3h-2c-1.7 0-3-1.3-3-3v-2.2c0-.4.2-.7.5-.9C13 17.8 12 16 12 14z" fill="url(#logoGradA)"/>
+        <path d="M15 26h6v1.5c0 .8-.7 1.5-1.5 1.5h-3c-.8 0-1.5-.7-1.5-1.5V26z" fill="url(#logoGradA)" opacity="0.7"/>
+        <circle cx="15.5" cy="13.5" r="1" fill="white"/>
+        <circle cx="20.5" cy="13.5" r="1" fill="white"/>
+        <defs>
+          <linearGradient id="logoGradA" x1="0" y1="0" x2="36" y2="36">
+            <stop offset="0%" stop-color="#ec4899"/>
+            <stop offset="50%" stop-color="#8b5cf6"/>
+            <stop offset="100%" stop-color="#f97316"/>
+          </linearGradient>
+        </defs>
+      </svg>
+      AmtocSoft
+    </a>
+    <ul class="nav-links">
+      <li><a href="#modules">Modules</a></li>
+      <li><a href="#pricing">Pricing</a></li>
+      <li><a href="#licensing">Licensing</a></li>
+      <li><a href="#services">Services</a></li>
+    </ul>
+    <a href="#stage-5" class="nav-cta">Get the Kit</a>
+    <button class="mobile-menu-btn" aria-label="Toggle menu">&#9776;</button>
+  </div>
+</nav>
+
+<main>
+
+  <!-- ========== HERO — ALPHA: COUNTER VARIANT ========== -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-counters">
+        <div class="counter-item">
+          <div class="counter-value pink" data-counter="235" data-stat="blogs">0</div>
+          <div class="counter-label">Blog Posts</div>
+        </div>
+        <div class="counter-item">
+          <div class="counter-value purple" data-counter="50" data-stat="videos">0</div>
+          <div class="counter-label">Videos</div>
+        </div>
+        <div class="counter-item">
+          <div class="counter-value orange" data-counter="39" data-stat="podcasts">0</div>
+          <div class="counter-label">Podcasts</div>
+        </div>
+        <div class="counter-item">
+          <div class="counter-value coral" data-counter="53">0</div>
+          <div class="counter-label">Days</div>
+        </div>
+      </div>
+      <p class="subtitle hero-subtitle-reveal" style="opacity: 0; transition: opacity 0.8s ease;">
+        Get the exact system, scripts, and templates behind it all.
+      </p>
+      <div class="hero-ctas">
+        <a href="#stage-5" class="btn-primary btn-pulse" data-track="hero-get-kit">Get the Starter Kit</a>
+        <a href="https://amtocbot.com" class="btn-outline" target="_blank" rel="noopener" data-track="hero-see-live">See It Live</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== STAGE 1: Blueprint ========== -->
+  <section class="stage" data-stage="1" id="modules">
+    <div class="container">
+      <div class="stage-header" data-reveal>
+        <h2 class="stage-title">It Starts With a Blueprint</h2>
+        <p class="stage-copy">One file tells the AI everything — what to write, where to publish, how to learn.</p>
+      </div>
+      <div class="stage-content" data-reveal>
+        <div class="glass-card module-card">
+          <div class="module-icon pink">
+            <span class="material-icons-outlined">description</span>
+          </div>
+          <h3 class="module-name">CLAUDE.md Blueprint</h3>
+          <p class="module-desc">The master instruction file. Defines your niche, voice, publishing workflow, and quality standards. Every AI tool reads this first.</p>
+          <ul class="module-features">
+            <li><span class="material-icons-outlined check">check_circle</span> Mission &amp; brand voice definition</li>
+            <li><span class="material-icons-outlined check">check_circle</span> Platform-specific publishing rules</li>
+            <li><span class="material-icons-outlined check">check_circle</span> Anti-ban &amp; rate-limit strategies</li>
+            <li><span class="material-icons-outlined check">check_circle</span> Content calendar templates</li>
+          </ul>
+          <div class="module-price">
+            <span class="price-tag">$49</span>
+          </div>
+          <button class="btn-outline" data-module="blueprint" data-track="buy-blueprint">Buy Module</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== STAGE 2: Create at Scale ========== -->
+  <section class="stage" data-stage="2">
+    <div class="container">
+      <div class="stage-header" data-reveal>
+        <h2 class="stage-title">Create at Scale</h2>
+        <p class="stage-copy">Blog posts, videos, and podcasts — generated and published automatically.</p>
+      </div>
+      <div class="stage-content card-group" data-reveal>
+        <div class="glass-card module-card">
+          <div class="module-icon purple">
+            <span class="material-icons-outlined">edit_note</span>
+          </div>
+          <h3 class="module-name">Blog Engine</h3>
+          <p class="module-desc">Research, write, and publish 3,000-word blog posts automatically. Includes SEO optimization, image generation prompts, and Blogger API integration.</p>
+          <ul class="module-features">
+            <li><span class="material-icons-outlined check">check_circle</span> Topic research automation</li>
+            <li><span class="material-icons-outlined check">check_circle</span> 3,000+ word deep-dive template</li>
+            <li><span class="material-icons-outlined check">check_circle</span> Blogger publish script</li>
+            <li><span class="material-icons-outlined check">check_circle</span> SEO metadata generation</li>
+          </ul>
+          <div class="module-price">
+            <span class="price-tag">$99</span>
+          </div>
+          <button class="btn-outline" data-module="blog" data-track="buy-blog">Buy Module</button>
+        </div>
+        <div class="glass-card module-card">
+          <div class="module-icon pink">
+            <span class="material-icons-outlined">videocam</span>
+          </div>
+          <h3 class="module-name">Video Production Pipeline</h3>
+          <p class="module-desc">Turn blog posts into narrated videos. Script writing, TTS narration, B-roll prompts, assembly automation, and YouTube upload — all scripted.</p>
+          <ul class="module-features">
+            <li><span class="material-icons-outlined check">check_circle</span> Script-to-narration (Kokoro TTS)</li>
+            <li><span class="material-icons-outlined check">check_circle</span> Video assembly automation</li>
+            <li><span class="material-icons-outlined check">check_circle</span> YouTube upload script</li>
+            <li><span class="material-icons-outlined check">check_circle</span> Thumbnail generation prompts</li>
+          </ul>
+          <div class="module-price">
+            <span class="price-tag">$149</span>
+          </div>
+          <button class="btn-outline" data-module="video" data-track="buy-video">Buy Module</button>
+        </div>
+        <div class="glass-card module-card">
+          <div class="module-icon orange">
+            <span class="material-icons-outlined">mic</span>
+          </div>
+          <h3 class="module-name">Podcast Production</h3>
+          <p class="module-desc">Convert written content to podcast episodes. AI narration, intro/outro stitching, RSS feed management, and Spotify for Creators upload workflow.</p>
+          <ul class="module-features">
+            <li><span class="material-icons-outlined check">check_circle</span> Blog-to-podcast conversion</li>
+            <li><span class="material-icons-outlined check">check_circle</span> Multi-voice narration setup</li>
+            <li><span class="material-icons-outlined check">check_circle</span> RSS &amp; feed automation</li>
+            <li><span class="material-icons-outlined check">check_circle</span> Spotify upload workflow</li>
+          </ul>
+          <div class="module-price">
+            <span class="price-tag">$99</span>
+          </div>
+          <button class="btn-outline" data-module="podcast" data-track="buy-podcast">Buy Module</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== STAGE 3: Distribute Everywhere ========== -->
+  <section class="stage" data-stage="3">
+    <div class="container">
+      <div class="stage-header" data-reveal>
+        <h2 class="stage-title">Distribute Everywhere</h2>
+        <p class="stage-copy">Cross-posted to every platform. Tailored per audience. Rate-limited to avoid bans.</p>
+      </div>
+      <div class="stage-content" data-reveal>
+        <div class="glass-card module-card">
+          <div class="module-icon pink">
+            <span class="material-icons-outlined">share</span>
+          </div>
+          <h3 class="module-name">Social Media Automation</h3>
+          <p class="module-desc">Repurpose each piece of content into platform-native posts. Unique hooks for LinkedIn, punchy takes for X, visual captions for Instagram — all generated and scheduled.</p>
+          <ul class="module-features">
+            <li><span class="material-icons-outlined check">check_circle</span> Per-platform post variants</li>
+            <li><span class="material-icons-outlined check">check_circle</span> LinkedIn article publishing</li>
+            <li><span class="material-icons-outlined check">check_circle</span> X/Twitter thread generation</li>
+            <li><span class="material-icons-outlined check">check_circle</span> Anti-shadowban rate limits</li>
+          </ul>
+          <div class="module-price">
+            <span class="price-tag">$99</span>
+          </div>
+          <button class="btn-outline" data-module="social" data-track="buy-social">Buy Module</button>
+        </div>
+        <div class="platform-icons" data-reveal>
+          <div class="platform-icon">
+            <span class="material-icons-outlined">work</span>
+            <span>LinkedIn</span>
+          </div>
+          <div class="platform-icon">
+            <span class="material-icons-outlined">tag</span>
+            <span>X / Twitter</span>
+          </div>
+          <div class="platform-icon">
+            <span class="material-icons-outlined">smart_display</span>
+            <span>YouTube</span>
+          </div>
+          <div class="platform-icon">
+            <span class="material-icons-outlined">rss_feed</span>
+            <span>Blogger</span>
+          </div>
+          <div class="platform-icon">
+            <span class="material-icons-outlined">music_note</span>
+            <span>TikTok</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== STAGE 4: Close the Loop ========== -->
+  <section class="stage" data-stage="4">
+    <div class="container">
+      <div class="stage-header" data-reveal>
+        <h2 class="stage-title">Close the Loop</h2>
+        <p class="stage-copy">Track what works. Feed it back. Every cycle gets smarter.</p>
+      </div>
+      <div class="stage-content card-group" data-reveal>
+        <div class="glass-card module-card">
+          <div class="module-icon orange">
+            <span class="material-icons-outlined">bar_chart</span>
+          </div>
+          <h3 class="module-name">Metrics &amp; Analytics</h3>
+          <p class="module-desc">A structured content tracker that aggregates views, impressions, and engagement across every platform. Identifies what's working and feeds signals back into your next content cycle.</p>
+          <ul class="module-features">
+            <li><span class="material-icons-outlined check">check_circle</span> Cross-platform tracker dashboard</li>
+            <li><span class="material-icons-outlined check">check_circle</span> Engagement pattern analysis</li>
+            <li><span class="material-icons-outlined check">check_circle</span> Content calendar optimization</li>
+            <li><span class="material-icons-outlined check">check_circle</span> Feedback-to-topic loop</li>
+          </ul>
+          <div class="module-price">
+            <span class="price-tag">$79</span>
+          </div>
+          <button class="btn-outline" data-module="metrics" data-track="buy-metrics">Buy Module</button>
+        </div>
+        <div class="glass-card module-card">
+          <div class="module-icon purple">
+            <span class="material-icons-outlined">dashboard</span>
+          </div>
+          <h3 class="module-name">Site &amp; Dashboard</h3>
+          <p class="module-desc">The complete public-facing site — Angular 19, Cloudflare Pages, KV-backed content API, newsletter integration via Brevo, and admin dashboard for managing your pipeline.</p>
+          <ul class="module-features">
+            <li><span class="material-icons-outlined check">check_circle</span> Angular 19 + Cloudflare Pages</li>
+            <li><span class="material-icons-outlined check">check_circle</span> Content API with KV cache</li>
+            <li><span class="material-icons-outlined check">check_circle</span> Newsletter (Brevo) integration</li>
+            <li><span class="material-icons-outlined check">check_circle</span> Admin dashboard &amp; analytics</li>
+          </ul>
+          <div class="module-price">
+            <span class="price-tag">$199</span>
+          </div>
+          <button class="btn-outline" data-module="site" data-track="buy-site">Buy Module</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== STAGE 5: Get the Kit ========== -->
+  <section class="stage" id="stage-5" data-reveal>
+    <div class="container">
+
+      <!-- Stage Header -->
+      <div class="stage-header" data-reveal>
+        <h2 class="stage-title">Get the Kit</h2>
+        <p class="stage-copy">Everything you need to run a fully automated AI content pipeline — from zero to multi-platform publishing.</p>
+      </div>
+
+      <!-- Bundle Card -->
+      <div id="pricing" class="glass-card bundle-card" data-reveal>
+        <div class="bundle-badge">Best Value — Save $324</div>
+        <h3 class="bundle-title">Full Pipeline Bundle</h3>
+        <p class="bundle-desc">All 7 modules. One download. The complete system from blueprint to analytics.</p>
+        <div class="bundle-price">
+          <span class="price-tag large">$449</span>
+          <span class="price-compare">$773 if bought separately</span>
+        </div>
+        <ul class="bundle-features">
+          <li><span class="material-icons-outlined check">check_circle</span> CLAUDE.md Blueprint ($49)</li>
+          <li><span class="material-icons-outlined check">check_circle</span> Blog Engine ($99)</li>
+          <li><span class="material-icons-outlined check">check_circle</span> Video Production Pipeline ($149)</li>
+          <li><span class="material-icons-outlined check">check_circle</span> Podcast Production ($99)</li>
+          <li><span class="material-icons-outlined check">check_circle</span> Social Media Automation ($99)</li>
+          <li><span class="material-icons-outlined check">check_circle</span> Metrics &amp; Analytics ($79)</li>
+          <li><span class="material-icons-outlined check">check_circle</span> Site &amp; Dashboard ($199)</li>
+          <li><span class="material-icons-outlined check">check_circle</span> All future updates included</li>
+          <li><span class="material-icons-outlined check">check_circle</span> Personal use license included</li>
+        </ul>
+        <button class="btn-primary btn-full" data-module="bundle" data-track="buy-bundle">Buy Full Bundle — $449</button>
+      </div>
+
+      <!-- Referral Code -->
+      <div class="referral-section section-block" data-reveal>
+        <button class="referral-toggle" id="referral-toggle">Have a referral code?</button>
+        <div class="referral-input-row" id="referral-input-row">
+          <input class="referral-input" id="referral-code-input" type="text" placeholder="REF-XXXXXXXX" maxlength="12" autocomplete="off">
+          <button class="referral-apply" id="referral-apply">Apply</button>
+        </div>
+        <div class="referral-status" id="referral-status"></div>
+      </div>
+
+      <!-- Individual Module Grid -->
+      <div class="stage-header" data-reveal style="margin-top: 4rem;">
+        <h3 class="section-subtitle">Or Buy Individual Modules</h3>
+      </div>
+      <div class="module-grid" data-reveal>
+        <div class="module-buy-card glass-card">
+          <h4>CLAUDE.md Blueprint</h4>
+          <div class="module-price"><span class="price-tag">$49</span></div>
+          <button class="btn-outline btn-sm" data-module="blueprint" data-track="buy-blueprint">Buy Module</button>
+        </div>
+        <div class="module-buy-card glass-card">
+          <h4>Blog Engine</h4>
+          <div class="module-price"><span class="price-tag">$99</span></div>
+          <button class="btn-outline btn-sm" data-module="blog" data-track="buy-blog">Buy Module</button>
+        </div>
+        <div class="module-buy-card glass-card">
+          <h4>Video Production Pipeline</h4>
+          <div class="module-price"><span class="price-tag">$149</span></div>
+          <button class="btn-outline btn-sm" data-module="video" data-track="buy-video">Buy Module</button>
+        </div>
+        <div class="module-buy-card glass-card">
+          <h4>Podcast Production</h4>
+          <div class="module-price"><span class="price-tag">$99</span></div>
+          <button class="btn-outline btn-sm" data-module="podcast" data-track="buy-podcast">Buy Module</button>
+        </div>
+        <div class="module-buy-card glass-card">
+          <h4>Social Media Automation</h4>
+          <div class="module-price"><span class="price-tag">$99</span></div>
+          <button class="btn-outline btn-sm" data-module="social" data-track="buy-social">Buy Module</button>
+        </div>
+        <div class="module-buy-card glass-card">
+          <h4>Metrics &amp; Analytics</h4>
+          <div class="module-price"><span class="price-tag">$79</span></div>
+          <button class="btn-outline btn-sm" data-module="metrics" data-track="buy-metrics">Buy Module</button>
+        </div>
+        <div class="module-buy-card glass-card">
+          <h4>Site &amp; Dashboard</h4>
+          <div class="module-price"><span class="price-tag">$199</span></div>
+          <button class="btn-outline btn-sm" data-module="site" data-track="buy-site">Buy Module</button>
+        </div>
+      </div>
+
+      <!-- Fixed Price Badge -->
+      <div class="price-badge glass-card" data-reveal>
+        <span class="material-icons-outlined lock-icon">lock</span>
+        <p>No discounts. No coupons. No sales.<br>Prices locked until at least April 2029.</p>
+      </div>
+
+      <!-- Licensing Section -->
+      <div id="licensing" class="section-block" data-reveal>
+        <div class="stage-header">
+          <h3 class="section-subtitle">Licensing</h3>
+          <p class="stage-copy">Choose the license that fits your usage. All purchases include a Personal use license by default.</p>
+        </div>
+        <div class="glass-card license-table-wrap">
+          <table class="license-table">
+            <thead>
+              <tr>
+                <th>Tier</th>
+                <th>Price</th>
+                <th>Use Case</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Personal</strong></td>
+                <td class="price-cell">Free <span class="price-note">with purchase</span></td>
+                <td>One individual, one pipeline, non-commercial or personal monetization</td>
+              </tr>
+              <tr>
+                <td><strong>Creator</strong></td>
+                <td class="price-cell"><span class="price-tag small">$199</span><span class="price-note">/yr</span></td>
+                <td>Monetized solo creator, up to $50K/yr revenue, no client work</td>
+              </tr>
+              <tr>
+                <td><strong>Business</strong></td>
+                <td class="price-cell"><span class="price-tag small">$499</span><span class="price-note">/yr</span></td>
+                <td>Small team or business, unlimited internal use, no reselling</td>
+              </tr>
+              <tr>
+                <td><strong>Agency</strong></td>
+                <td class="price-cell"><span class="price-tag small">$999</span><span class="price-note">/yr</span></td>
+                <td>Client delivery, up to 5 clients. <a href="/cdn-cgi/l/email-protection#274f424b4b4867464a5348444548530944484a" class="contact-link">Contact us</a></td>
+              </tr>
+              <tr>
+                <td><strong>White-Label</strong></td>
+                <td class="price-cell"><span class="price-tag small">$2,499</span><span class="price-note">/yr</span></td>
+                <td>Rebrand and resell as your own product. <a href="/cdn-cgi/l/email-protection#85ede0e9e9eac5e4e8f1eae6e7eaf1abe6eae8" class="contact-link">Contact us</a></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Services Section -->
+      <div id="services" class="section-block" data-reveal>
+        <div class="stage-header">
+          <h3 class="section-subtitle">Services &amp; Training</h3>
+          <p class="stage-copy">Need help getting set up? We offer hands-on support to get your pipeline running fast.</p>
+        </div>
+        <div class="card-group services-grid">
+          <div class="glass-card service-card" data-reveal>
+            <span class="material-icons-outlined service-icon">support_agent</span>
+            <h4>1-on-1 Setup Session</h4>
+            <p>60-minute live session. We walk through installation, configuration, and your first publish cycle together.</p>
+            <div class="module-price"><span class="price-tag">$299</span></div>
+            <a href="https://cal.com/toc-am-2026?subject=Setup+Session" class="btn-outline btn-sm">Book Session</a>
+          </div>
+          <div class="glass-card service-card" data-reveal>
+            <span class="material-icons-outlined service-icon">manage_search</span>
+            <h4>Pipeline Audit</h4>
+            <p>We review your existing setup, identify bottlenecks, and deliver a written action plan with fixes and optimizations.</p>
+            <div class="module-price"><span class="price-tag">$199</span></div>
+            <a href="https://cal.com/toc-am-2026?subject=Pipeline+Audit" class="btn-outline btn-sm">Request Audit</a>
+          </div>
+          <div class="glass-card service-card" data-reveal>
+            <span class="material-icons-outlined service-icon">build_circle</span>
+            <h4>Custom Build</h4>
+            <p>Need a niche-specific variant, custom integrations, or a completely custom pipeline? Let's scope it together.</p>
+            <div class="module-price"><span class="price-tag contact">Contact</span></div>
+            <a href="https://cal.com/toc-am-2026?subject=Custom+Build" class="btn-outline btn-sm">Get in Touch</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Reviews Section -->
+      <div class="reviews-section section-block hidden" id="reviews-section" data-reveal>
+        <div class="stage-header">
+          <h3 class="section-subtitle">What Buyers Are Saying</h3>
+        </div>
+        <div class="reviews-grid" id="reviews-grid"></div>
+        <div style="text-align:center; margin-top:1rem;">
+          <button class="review-leave-link" id="review-leave-btn">Leave a review &#x2192;</button>
+        </div>
+        <div class="review-form-section hidden" id="review-form-section">
+          <h4>Share Your Experience</h4>
+          <div class="star-rating">
+            <span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span>
+          </div>
+          <div class="review-form">
+            <input type="text" name="title" placeholder="Review title (max 100 chars)" maxlength="100">
+            <textarea name="body" placeholder="Your review (max 500 chars)" maxlength="500"></textarea>
+            <div class="form-row">
+              <input type="text" name="name" placeholder="Your name">
+              <input type="email" name="email" placeholder="Your email (not shown)">
+            </div>
+            <input type="hidden" name="module" value="">
+            <button class="review-form-submit">Submit Review</button>
+            <div class="review-form-status"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- FAQ Section -->
+      <div class="section-block" data-reveal>
+        <div class="stage-header">
+          <h3 class="section-subtitle">Frequently Asked Questions</h3>
+        </div>
+        <div class="faq-list">
+
+          <div class="faq-item">
+            <button class="faq-question">
+              What exactly do I get when I buy?
+              <span class="faq-icon material-icons-outlined">add</span>
+            </button>
+            <div class="faq-answer">
+              <p>You get a ZIP download containing all the Markdown files, Python scripts, prompt templates, session logs, and workflow documentation that power the AmtocSoft pipeline. Everything is fully readable — no compiled code, no black boxes. You can study it, adapt it, and run it with Claude Code or any compatible AI coding tool.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question">
+              Do I need Claude Code specifically?
+              <span class="faq-icon material-icons-outlined">add</span>
+            </button>
+            <div class="faq-answer">
+              <p>The system is designed and tested with Claude Code (Anthropic's CLI). Many workflows will adapt to other AI coding tools like Cursor or Copilot, but you'll get the best results with Claude Code. A Claude Pro subscription ($20/mo) is recommended for the best throughput.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question">
+              Is this a subscription? What happens after I buy?
+              <span class="faq-icon material-icons-outlined">add</span>
+            </button>
+            <div class="faq-answer">
+              <p>The modules are one-time purchases. Licensing tiers (Creator and above) are annual. There are no hidden fees. You receive the files, they're yours. Future updates to the bundle are included for bundle purchasers.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question">
+              Will this get my accounts banned?
+              <span class="faq-icon material-icons-outlined">add</span>
+            </button>
+            <div class="faq-answer">
+              <p>The system is built around platform-safe publishing. Rate limits, unique content per platform, and human-in-the-loop review steps are baked in. The CLAUDE.md Blueprint includes explicit anti-ban strategies. That said, AI content policies vary and evolve — you are responsible for complying with each platform's terms of service.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question">
+              What's the refund policy?
+              <span class="faq-icon material-icons-outlined">add</span>
+            </button>
+            <div class="faq-answer">
+              <p>Digital downloads are non-refundable once delivered. If you experience a technical issue with delivery, contact <a href="/cdn-cgi/l/email-protection#1c74797070735c7d7168737f7e7368327f7371"><span class="__cf_email__" data-cfemail="a0c8c5cccccfe0c1cdd4cfc3c2cfd48ec3cfcd">[email&#160;protected]</span></a> within 7 days. See the full <a href="/refund-policy">Refund Policy</a> for details.</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Final CTA -->
+      <div class="final-cta" data-reveal>
+        <h2>Build Your Content Machine</h2>
+        <p>Join the builders automating what everyone else is doing by hand.</p>
+        <a href="#pricing" class="btn-white" data-track="final-cta-get-kit">Get the Starter Kit</a>
+      </div>
+
+    </div>
+  </section>
+
+</main>
+
+<!-- ========== FOOTER ========== -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h5 class="footer-heading">Product</h5>
+        <ul>
+          <li><a href="#modules">Modules</a></li>
+          <li><a href="#pricing">Pricing</a></li>
+          <li><a href="#licensing">Licensing</a></li>
+          <li><a href="#services">Services</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5 class="footer-heading">Showcase</h5>
+        <ul>
+          <li><a href="https://amtocbot.com" target="_blank" rel="noopener">AmtocBot Site</a></li>
+          <li><a href="https://amtocsoft.blogspot.com" target="_blank" rel="noopener">Blog</a></li>
+          <li><a href="https://youtube.com/@quietsentinelshadow" target="_blank" rel="noopener">YouTube</a></li>
+          <li><a href="https://linkedin.com/in/toc-am-b301373b4/" target="_blank" rel="noopener">LinkedIn</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5 class="footer-heading">Legal</h5>
+        <ul>
+          <li><a href="/terms">Terms of Service</a></li>
+          <li><a href="/license">License</a></li>
+          <li><a href="/privacy">Privacy Policy</a></li>
+          <li><a href="/refund-policy">Refund Policy</a></li>
+          <li><a href="/acceptable-use">Acceptable Use</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5 class="footer-heading">Contact</h5>
+        <ul>
+          <li><a href="/cdn-cgi/l/email-protection#7f171a1313103f1e120b101c1d100b511c1012"><span class="__cf_email__" data-cfemail="650d0009090a250408110a06070a114b060a08">[email&#160;protected]</span></a></li>
+          <li><a href="https://x.com/AmToc96282" target="_blank" rel="noopener">X / Twitter</a></li>
+          <li><a href="https://github.com/amtocbot-droid" target="_blank" rel="noopener">GitHub</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 SRV Investments LLC d/b/a AmtocSoft. All rights reserved.</p>
+      <p class="footer-note">Built with Claude Code. Content generated by AI, curated by humans.</p>
+    </div>
+  </div>
+</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="https://js.stripe.com/v3/"></script>
+<script src="script.js"></script>
+<script src="analytics.js"></script>
+</body>
+</html>
