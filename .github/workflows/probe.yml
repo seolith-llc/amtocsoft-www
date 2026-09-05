@@ -4,7 +4,7 @@ on:
 permissions:
   contents: read
 jobs:
-  probe:
-    runs-on: ubuntu-latest
-    steps:
-      - run: echo hello
+  call:
+    uses: seolith-llc/seolith-dev-standards/.github/workflows/secret-scan.yml@2b6fad978ae3f98e824cd2210438b03a503c1444 # v1.1.4
+    with:
+      runs-on: '["self-hosted","Linux","X64","seolith-local","linux-build"]'
