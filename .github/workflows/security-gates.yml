@@ -1,0 +1,19 @@
+name: Security gates
+
+# Caller over pinned seolith-dev-standards releases (never @main).
+# conformance: MUST-tier estate rules, --new-only against the committed
+#              .seolith-conformance-baseline (frozen debt passes, new debt blocks).
+# GitHub Code Security/Advanced Security is intentionally disabled organization-wide.
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  conformance:
+    uses: seolith-llc/seolith-dev-standards/.github/workflows/conformance.yml@2b6fad978ae3f98e824cd2210438b03a503c1444 # v1.1.4
+    with:
+      runs-on: '["self-hosted","Linux","X64","seolith-local","linux-build"]'

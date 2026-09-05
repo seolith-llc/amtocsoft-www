@@ -1,0 +1,6 @@
+# seolith-conformance baseline -- frozen 2026-09-04. This freezes today's debt; it does not forgive it.
+# key format: RULE<TAB>file<TAB>message (line numbers dropped so edits that shift lines do not un-freeze debt;
+# one line per occurrence, so a second identical violation in the same file is NEW and blocks)
+M8	.github/workflows	no gitleaks gate runs on push/PR (secret-scan.yml caller or equivalent)
+M8	.gitleaks.toml	no .gitleaks.toml -- copy the canonical config from seolith-dev-standards
+M9	.github/workflows	no live CI workflow -- tests (if any exist) never execute in CI
