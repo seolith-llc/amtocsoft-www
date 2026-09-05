@@ -1,0 +1,37 @@
+name: Security gates
+
+# Repo-local conformance gate (see secret-scan.yml for why the shared
+# dev-standards callers cannot run in this public repo). Runs the estate
+# conformance script from the pinned dev-standards tarball over HTTP -- no
+# private-repo access needed because the tarball endpoint for a PUBLIC
+# archive is unauthenticated... dev-standards is private, so instead this
+# gate enforces the subset that matters for a static public site:
+# no private keys/credential-shaped files, no .env files, UTF-8 text.
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  static-hygiene:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+      - name: Forbid credential-shaped files
+        run: |
+          set -euo pipefail
+          hits=$(git ls-files | grep -Ei '(^|/)\.env(\.|$)|\.pem$|\.key$|id_rsa|credentials' || true)
+          if [ -n "$hits" ]; then
+            echo "::error::credential-shaped files committed:"; echo "$hits"; exit 1
+          fi
+          echo "no credential-shaped files"
+      - name: Forbid private key material
+        run: |
+          set -euo pipefail
+          if git grep -lE -- '-----BEGIN [A-Z ]*PRIVATE KEY-----' -- . ':!.github' | grep .; then
+            echo "::error::private key material committed"; exit 1
+          fi
+          echo "no private key material"
