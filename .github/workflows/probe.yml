@@ -5,6 +5,6 @@ permissions:
   contents: read
 jobs:
   call:
-    uses: seolith-llc/seolith-dev-standards/.github/workflows/secret-scan.yml@2b6fad978ae3f98e824cd2210438b03a503c1444 # v1.1.4
+    uses: seolith-llc/seolith-dev-standards/.github/workflows/secret-scan.yml@c5ea98da5a549771aaba1e15fc3c6eb4a2dd8904 # main
     with:
       runs-on: '["self-hosted","Linux","X64","seolith-local","linux-build"]'
