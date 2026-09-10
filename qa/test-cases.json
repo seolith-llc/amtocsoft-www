@@ -1,0 +1,197 @@
+{
+  "appId": "amtocsoft-www",
+  "version": 1,
+  "cases": [
+    {
+      "id": "routing-001",
+      "title": "Root / issues 308 redirect to an A/B/C variant with ab_variant cookie",
+      "area": "core",
+      "priority": "critical",
+      "status": "untested",
+      "version": 1,
+      "firstObservedBy": "seed",
+      "stepsToReproduce": [
+        "Open a fresh browser profile (no cookies) and request https://amtocsoft.com/",
+        "Inspect the response status, Location header, and Set-Cookie header"
+      ],
+      "expectedResult": "Response is 308 with Location /index-alpha, /index-beta, or /index-gamma and a Set-Cookie ab_variant=<same variant> with Path=/, Expires=next midnight UTC, SameSite=Lax",
+      "history": []
+    },
+    {
+      "id": "routing-002",
+      "title": "Existing ab_variant cookie is respected on repeat visit",
+      "area": "core",
+      "priority": "high",
+      "status": "untested",
+      "version": 1,
+      "firstObservedBy": "seed",
+      "stepsToReproduce": [
+        "Visit https://amtocsoft.com/ once and note the assigned variant from the redirect",
+        "Request https://amtocsoft.com/ again in the same browser session"
+      ],
+      "expectedResult": "Second visit redirects to the same variant as the cookie; the variant does not re-randomize until the cookie expires",
+      "history": []
+    },
+    {
+      "id": "routing-003",
+      "title": "Each variant page loads directly with shared assets",
+      "area": "core",
+      "priority": "high",
+      "status": "untested",
+      "version": 1,
+      "firstObservedBy": "seed",
+      "stepsToReproduce": [
+        "Open /index-alpha, /index-beta, and /index-gamma directly in separate tabs",
+        "Check that styles.css, script.js, analytics.js, and favicon.ico all load with HTTP 200 on each variant",
+        "Check the browser console for errors"
+      ],
+      "expectedResult": "All three variants render fully styled with no failed asset requests and no console errors",
+      "history": []
+    },
+    {
+      "id": "hero-001",
+      "title": "Hero CTAs: Get the Starter Kit scrolls to stage 5, See It Live opens amtocbot.com",
+      "area": "core",
+      "priority": "high",
+      "status": "untested",
+      "version": 1,
+      "firstObservedBy": "seed",
+      "stepsToReproduce": [
+        "Open any variant landing page",
+        "Click 'Get the Starter Kit' in the hero",
+        "Click 'See It Live' in the hero"
+      ],
+      "expectedResult": "'Get the Starter Kit' smooth-scrolls to the #stage-5 bundle section; 'See It Live' opens https://amtocbot.com in a new tab (target=_blank, rel=noopener)",
+      "history": []
+    },
+    {
+      "id": "counters-001",
+      "title": "Counter widgets animate from 0 to live content stats (alpha/beta)",
+      "area": "counters",
+      "priority": "high",
+      "status": "untested",
+      "version": 1,
+      "firstObservedBy": "seed",
+      "stepsToReproduce": [
+        "Open /index-alpha or /index-beta",
+        "Scroll the hero counters into view",
+        "Watch the blog/video/podcast counter values animate",
+        "Confirm the final values match https://amtocbot.com/api/content-stats fields (blogs, videos, podcasts)"
+      ],
+      "expectedResult": "Counters animate from 0 up to the live API values; if the API is unreachable they settle on the data-counter fallback values without a console error breaking the page",
+      "history": []
+    },
+    {
+      "id": "counters-002",
+      "title": "Gamma variant shows static stat tags instead of animated counters",
+      "area": "counters",
+      "priority": "medium",
+      "status": "untested",
+      "version": 1,
+      "firstObservedBy": "seed",
+      "stepsToReproduce": [
+        "Open /index-gamma",
+        "Scroll through the hero"
+      ],
+      "expectedResult": "Static stat-tag text (e.g. '250+ blog posts', '50+ videos') renders in the living-pipeline hero; no counter animation runs and no content-stats fetch errors appear",
+      "history": []
+    },
+    {
+      "id": "nav-001",
+      "title": "Nav anchor links and mobile menu work",
+      "area": "core",
+      "priority": "medium",
+      "status": "untested",
+      "version": 1,
+      "firstObservedBy": "seed",
+      "stepsToReproduce": [
+        "Open any variant on desktop width; click Modules, Pricing, Licensing, Services in the top nav",
+        "Resize to mobile width (or use device emulation) and tap the hamburger menu button",
+        "Tap a nav link from the open mobile menu"
+      ],
+      "expectedResult": "Each anchor smooth-scrolls to its section; the mobile menu toggles open/closed and closes after a link is tapped",
+      "history": []
+    },
+    {
+      "id": "checkout-001",
+      "title": "Module buy buttons initiate checkout via /api/checkout",
+      "area": "checkout",
+      "priority": "critical",
+      "status": "untested",
+      "version": 1,
+      "firstObservedBy": "seed",
+      "stepsToReproduce": [
+        "Open any variant and scroll to a module section (blueprint, blog, video, podcast, social, metrics, site)",
+        "Click the module's buy button with DevTools Network open",
+        "Observe the POST to /api/checkout with the module name in the JSON body"
+      ],
+      "expectedResult": "A POST /api/checkout fires with {\"module\": \"<name>\"}; on success the browser is sent to the checkout URL returned by the API; on API failure the user sees an error state, not a silent dead button",
+      "history": []
+    },
+    {
+      "id": "checkout-002",
+      "title": "Referral code toggle, validation, and persistence",
+      "area": "checkout",
+      "priority": "high",
+      "status": "untested",
+      "version": 1,
+      "firstObservedBy": "seed",
+      "stepsToReproduce": [
+        "Open any variant and scroll to the #stage-5 bundle section",
+        "Click the referral-code toggle to reveal the input row",
+        "Enter an invalid code and click Apply (or press Enter)",
+        "Enter a valid code and click Apply",
+        "Reload the page and check the referral state"
+      ],
+      "expectedResult": "Toggle reveals/hides the input; invalid code shows an invalid status; valid code calls /api/referral/validate, shows the discount, and persists referral_code in sessionStorage so it is attached to subsequent checkout POSTs",
+      "history": []
+    },
+    {
+      "id": "reviews-001",
+      "title": "Reviews section loads from /api/reviews and hides when empty",
+      "area": "reviews",
+      "priority": "medium",
+      "status": "untested",
+      "version": 1,
+      "firstObservedBy": "seed",
+      "stepsToReproduce": [
+        "Open any variant and scroll to the reviews section",
+        "Confirm review cards render with star ratings, title, and body from GET /api/reviews",
+        "Block the /api/reviews request (DevTools request blocking) and reload"
+      ],
+      "expectedResult": "With data, review cards render with escaped HTML (no injected markup); with an empty or failed response the section hides itself instead of rendering an empty broken block",
+      "history": []
+    },
+    {
+      "id": "content-001",
+      "title": "FAQ accordion opens one item at a time",
+      "area": "content",
+      "priority": "low",
+      "status": "untested",
+      "version": 1,
+      "firstObservedBy": "seed",
+      "stepsToReproduce": [
+        "Open any variant and scroll to the FAQ section",
+        "Click the first question to open it",
+        "Click a second question"
+      ],
+      "expectedResult": "Clicking a question expands its answer; opening a new question closes the previously open one so at most one FAQ item is open",
+      "history": []
+    },
+    {
+      "id": "legal-001",
+      "title": "Footer legal pages load",
+      "area": "legal",
+      "priority": "high",
+      "status": "untested",
+      "version": 1,
+      "firstObservedBy": "seed",
+      "stepsToReproduce": [
+        "Open any variant and scroll to the footer",
+        "Click each of Terms of Service, License, Privacy Policy, Refund Policy, and Acceptable Use"
+      ],
+      "expectedResult": "Each of /terms, /license, /privacy, /refund-policy, and /acceptable-use returns HTTP 200 with the real legal page content, not the stale SPA fallback landing",
+      "history": []
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+<!doctype html>
+<html>
+  <head>
+    <meta name="robots" content="noindex,nofollow" />
+    <title>/tester</title>
+    <script type="module">
+      // Gate: hidden QA route. Wrong or missing key bounces to the landing;
+      // the harness module is only loaded after the gate passes.
+      const QA_KEY = 'amtocsoft-www-qa-m4k9';
+      if (new URLSearchParams(location.search).get('key') !== QA_KEY) {
+        location.replace('/');
+      } else {
+        const script = document.createElement('script');
+        script.type = 'module';
+        script.src = '/qa-tester.js';
+        document.head.appendChild(script);
+      }
+    </script>
+  </head>
+  <body>
+    <qa-tester app-id="amtocsoft-www"
+               registry-url="./qa/test-cases.json"
+               collector-url="https://qa.seolith.com"></qa-tester>
+  </body>
+</html>
