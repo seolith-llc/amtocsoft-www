@@ -1,3 +1,8 @@
 User-agent: *
+Allow: /
 Disallow: /tester
 Disallow: /tester.html
+Disallow: /qa/
+Disallow: /qa-tester.js
+
+Sitemap: https://amtocsoft.com/sitemap.xml
