@@ -99,11 +99,18 @@ a { color: inherit; text-decoration: none; }
   transform: translateY(-1px);
   box-shadow: 0 4px 20px rgba(236, 72, 153, 0.45);
 }
+.nav-cta:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 15px rgba(236, 72, 153, 0.3);
+}
 .mobile-menu-btn {
   display: block; background: none; border: none;
   font-size: 1.5rem; cursor: pointer; color: var(--text-primary); padding: 4px;
   min-width: 44px; min-height: 44px;
+  transition: color 0.2s ease;
 }
+.mobile-menu-btn:hover { color: var(--glow-pink); }
+.mobile-menu-btn:active { color: var(--glow-orange); }
 
 /* ============================
    5. Hero (shared)
@@ -148,6 +155,17 @@ a { color: inherit; text-decoration: none; }
   transform: translateY(-2px);
   box-shadow: 0 8px 30px rgba(236, 72, 153, 0.45);
 }
+.btn-primary:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 12px rgba(236, 72, 153, 0.3);
+}
+.btn-primary:disabled,
+.btn-primary:disabled:hover {
+  opacity: 0.55;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: 0 4px 20px rgba(236, 72, 153, 0.3);
+}
 .btn-outline {
   display: inline-flex; align-items: center; justify-content: center;
   background: var(--bg-card); backdrop-filter: var(--glass-blur);
@@ -159,6 +177,17 @@ a { color: inherit; text-decoration: none; }
 .btn-outline:hover {
   border-color: var(--glass-border-hover);
   background: rgba(255, 255, 255, 0.06);
+}
+.btn-outline:active {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: var(--glass-border-hover);
+}
+.btn-outline:disabled,
+.btn-outline:disabled:hover {
+  opacity: 0.55;
+  cursor: not-allowed;
+  border-color: var(--glass-border);
+  background: var(--bg-card);
 }
 .btn-sm { padding: 11px 24px; font-size: 0.875rem; }
 .btn-block, .btn-full { width: 100%; }
@@ -420,6 +449,9 @@ button.faq-question {
 .final-cta .btn-white:hover {
   transform: translateY(-2px); box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
 }
+.final-cta .btn-white:active {
+  transform: translateY(0); box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
 
 /* ============================
    18. Footer
@@ -655,6 +687,12 @@ button.faq-question {
   transition: opacity 0.2s;
 }
 .referral-apply:hover { opacity: 0.85; }
+.referral-apply:active { opacity: 0.7; }
+.referral-apply:disabled,
+.referral-apply:disabled:hover {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
 .referral-status {
   font-size: 0.875rem;
   margin-top: 0.5rem;
@@ -751,6 +789,7 @@ button.faq-question {
   min-width: 44px; min-height: 44px;
 }
 .star-rating span.active { color: var(--glow-orange); }
+.star-rating span:hover { color: var(--glow-orange); }
 .review-form input,
 .review-form textarea {
   width: 100%;
@@ -768,6 +807,8 @@ button.faq-question {
 }
 .review-form input:focus,
 .review-form textarea:focus { border-color: var(--glow-purple); }
+.review-form input.field-error,
+.review-form textarea.field-error { border-color: var(--error); }
 .review-form textarea { resize: vertical; min-height: 90px; }
 .review-form .form-row { display: flex; gap: 0.75rem; }
 .review-form .form-row input { flex: 1; }
@@ -784,6 +825,12 @@ button.faq-question {
   transition: opacity 0.2s;
 }
 .review-form-submit:hover { opacity: 0.85; }
+.review-form-submit:active { opacity: 0.7; }
+.review-form-submit:disabled,
+.review-form-submit:disabled:hover {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
 .review-form-status { margin-top: 0.5rem; font-size: 0.875rem; }
 .review-form-status.success { color: var(--success); }
 .review-form-status.error { color: var(--error); }
@@ -838,3 +885,36 @@ button.faq-question {
 .referral-copy-btn:hover { border-color: var(--glow-pink); color: var(--glow-pink); }
 .referral-copy-btn.copied { border-color: var(--success); color: var(--success); }
 .referral-code-hint { font-size: 0.85rem; color: var(--text-secondary); }
+
+/* ============================
+   Reveal Transitions & Toast
+   ============================ */
+@keyframes fade-slide-in {
+  from { opacity: 0; transform: translateY(-8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.nav-links.open,
+.referral-input-row.visible,
+.review-form-section:not(.hidden) {
+  animation: fade-slide-in 0.2s ease;
+}
+
+.toast {
+  position: fixed; bottom: 24px; left: 50%;
+  transform: translateX(-50%) translateY(16px);
+  background: var(--bg-surface);
+  border: 1px solid var(--error);
+  border-radius: var(--radius-md);
+  color: var(--text-primary);
+  font-size: 0.9rem;
+  padding: 12px 20px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+  opacity: 0;
+  pointer-events: none;
+  z-index: 2000;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+.toast.visible {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}

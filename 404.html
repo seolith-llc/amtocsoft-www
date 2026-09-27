@@ -90,6 +90,16 @@
       text-decoration: none;
       padding: 14px 32px;
       border-radius: 12px;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      box-shadow: 0 4px 20px rgba(236, 72, 153, 0.3);
+    }
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(236, 72, 153, 0.45);
+    }
+    .btn-primary:active {
+      transform: translateY(0);
+      box-shadow: 0 2px 12px rgba(236, 72, 153, 0.3);
     }
     .btn-outline {
       display: inline-block;
@@ -100,8 +110,10 @@
       text-decoration: none;
       padding: 14px 32px;
       border-radius: 12px;
+      transition: color 0.2s ease, border-color 0.2s ease, background 0.2s ease;
     }
     .btn-outline:hover { color: #ec4899; border-color: #ec4899; }
+    .btn-outline:active { background: rgba(255, 255, 255, 0.06); }
   </style>
 </head>
 <body>
