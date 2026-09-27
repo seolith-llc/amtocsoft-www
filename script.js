@@ -13,14 +13,27 @@ if (menuBtn && navLinks) {
     menuBtn.setAttribute('aria-expanded', String(navLinks.classList.contains('open')));
     menuBtn.textContent = navLinks.classList.contains('open') ? '\u2715' : '\u2630';
   });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && navLinks.classList.contains('open')) {
+      navLinks.classList.remove('open');
+      menuBtn.setAttribute('aria-expanded', 'false');
+      menuBtn.textContent = '\u2630';
+      menuBtn.focus();
+    }
+  });
 }
 
 // --- Smooth Scroll ---
 document.querySelectorAll('a[href^="#"]').forEach(a => {
   a.addEventListener('click', e => {
     e.preventDefault();
-    const t = document.querySelector(a.getAttribute('href'));
-    if (t) t.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    const href = a.getAttribute('href');
+    if (href === '#') {
+      window.scrollTo({ behavior: 'smooth', top: 0 });
+    } else {
+      const t = document.querySelector(href);
+      if (t) t.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
     navLinks?.classList.remove('open');
   });
 });
@@ -223,12 +236,19 @@ function animateCounter(el, target, duration) {
 
 // --- FAQ Accordion ---
 document.querySelectorAll('.faq-question').forEach(q => {
+  q.setAttribute('aria-expanded', 'false');
   q.addEventListener('click', () => {
     const item = q.parentElement;
     const wasOpen = item.classList.contains('open');
     // Close all
-    document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
-    if (!wasOpen) item.classList.add('open');
+    document.querySelectorAll('.faq-item.open').forEach(i => {
+      i.classList.remove('open');
+      i.querySelector('.faq-question')?.setAttribute('aria-expanded', 'false');
+    });
+    if (!wasOpen) {
+      item.classList.add('open');
+      q.setAttribute('aria-expanded', 'true');
+    }
   });
 });
 
@@ -383,11 +403,14 @@ document.querySelectorAll('[data-module]').forEach(btn => {
   leaveBtn.addEventListener('click', () => formSection.classList.toggle('hidden'));
 
   let selectedRating = 0;
-  const stars = formSection.querySelectorAll('.star-rating span');
+  const stars = formSection.querySelectorAll('.star-rating button');
   stars.forEach((star, i) => {
     star.addEventListener('click', () => {
       selectedRating = i + 1;
-      stars.forEach((s, j) => s.classList.toggle('active', j < selectedRating));
+      stars.forEach((s, j) => {
+        s.classList.toggle('active', j < selectedRating);
+        s.setAttribute('aria-pressed', String(j < selectedRating));
+      });
     });
   });
 
@@ -427,7 +450,7 @@ document.querySelectorAll('[data-module]').forEach(btn => {
         statusEl.textContent = 'Thank you for your review!';
         statusEl.className = 'review-form-status success';
         form.reset(); selectedRating = 0;
-        stars.forEach(s => s.classList.remove('active'));
+        stars.forEach(s => { s.classList.remove('active'); s.setAttribute('aria-pressed', 'false'); });
       } else {
         statusEl.textContent = data.error || 'Submission failed.';
         statusEl.className = 'review-form-status error';
