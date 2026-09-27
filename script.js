@@ -7,8 +7,10 @@
 const menuBtn = document.querySelector('.mobile-menu-btn');
 const navLinks = document.querySelector('.nav-links');
 if (menuBtn && navLinks) {
+  menuBtn.setAttribute('aria-expanded', 'false');
   menuBtn.addEventListener('click', () => {
     navLinks.classList.toggle('open');
+    menuBtn.setAttribute('aria-expanded', String(navLinks.classList.contains('open')));
     menuBtn.textContent = navLinks.classList.contains('open') ? '\u2715' : '\u2630';
   });
 }
