@@ -71,7 +71,8 @@ container padding 24px inline.
 
 - **Primary button** (`.btn-primary`, `.nav-cta`, form submit/apply): pink→orange
   gradient, white text, weight 600, `--radius-md`, pink glow shadow. Sizes:
-  default 14px/32px padding (1rem), small (`.btn-sm`) 10px/24px (0.875rem).
+  default 14px/32px padding (1rem), small (`.btn-sm`) 11px/24px (0.875rem).
+  Buttons and controls keep a ~44px minimum tap target for touch.
 - **Outline button** (`.btn-outline`): glass fill, `--glass-border`, `--radius-md`,
   same sizes as primary.
 - **White button** (`.btn-white`): only on the tri-color final-cta banner.
