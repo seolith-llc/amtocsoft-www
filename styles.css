@@ -54,6 +54,15 @@ body {
 img { max-width: 100%; display: block; }
 a { color: inherit; text-decoration: none; }
 
+/* Visible focus ring for keyboard users */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid var(--glow-purple);
+  outline-offset: 2px;
+}
+
 /* ============================
    3. Layout
    ============================ */
@@ -779,17 +788,22 @@ button.faq-question {
   color: var(--glow-purple);
   margin-bottom: 1rem;
 }
-.star-rating { display: flex; gap: 0.25rem; margin-bottom: 1rem; cursor: pointer; }
-.star-rating span {
+.star-rating { display: flex; gap: 0.25rem; margin-bottom: 1rem; }
+.star-rating button {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
   font-size: 1.75rem;
+  line-height: 1;
   color: var(--text-dim);
   transition: color 0.15s;
   user-select: none;
   display: inline-flex; align-items: center; justify-content: center;
   min-width: 44px; min-height: 44px;
 }
-.star-rating span.active { color: var(--glow-orange); }
-.star-rating span:hover { color: var(--glow-orange); }
+.star-rating button.active { color: var(--glow-orange); }
+.star-rating button:hover { color: var(--glow-orange); }
 .review-form input,
 .review-form textarea {
   width: 100%;
