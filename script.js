@@ -232,6 +232,22 @@ document.querySelectorAll('.faq-question').forEach(q => {
   });
 });
 
+// --- Toast (lightweight inline error feedback) ---
+
+function showToast(message) {
+  let toast = document.querySelector('.toast');
+  if (!toast) {
+    toast = document.createElement('div');
+    toast.className = 'toast';
+    toast.setAttribute('role', 'alert');
+    document.body.appendChild(toast);
+  }
+  toast.textContent = message;
+  toast.classList.add('visible');
+  clearTimeout(showToast._timer);
+  showToast._timer = setTimeout(() => toast.classList.remove('visible'), 4000);
+}
+
 // --- Stripe Checkout (server-side session) ---
 
 let appliedReferralCode = sessionStorage.getItem('referral_code') || null;
@@ -252,12 +268,12 @@ document.querySelectorAll('[data-module]').forEach(btn => {
       if (data.url) {
         window.location.href = data.url;
       } else {
-        alert('Checkout error. Please try again.');
+        showToast('Checkout error. Please try again.');
         btn.textContent = originalText;
         btn.disabled = false;
       }
     } catch {
-      alert('Network error. Please try again.');
+      showToast('Network error. Please try again.');
       btn.textContent = originalText;
       btn.disabled = false;
     }
@@ -297,6 +313,7 @@ document.querySelectorAll('[data-module]').forEach(btn => {
     if (!code) return;
     status.textContent = 'Checking\u2026';
     status.className = 'referral-status';
+    applyBtn.disabled = true;
     try {
       const resp = await fetch(`/api/referral/validate?code=${encodeURIComponent(code)}`);
       const data = await resp.json();
@@ -315,6 +332,7 @@ document.querySelectorAll('[data-module]').forEach(btn => {
       status.textContent = 'Could not verify. Try again.';
       status.className = 'referral-status invalid';
     }
+    applyBtn.disabled = false;
   }
 
   function showReferralValid(discountCents) {
@@ -376,6 +394,9 @@ document.querySelectorAll('[data-module]').forEach(btn => {
   const form = formSection.querySelector('.review-form');
   const submitBtn = formSection.querySelector('.review-form-submit');
   const statusEl = formSection.querySelector('.review-form-status');
+  const fields = ['title', 'body', 'name', 'email'].map(n => form.querySelector(`[name="${n}"]`));
+
+  fields.forEach(f => f.addEventListener('input', () => f.classList.remove('field-error')));
 
   submitBtn.addEventListener('click', async () => {
     const title = form.querySelector('[name="title"]').value.trim();
@@ -384,8 +405,13 @@ document.querySelectorAll('[data-module]').forEach(btn => {
     const email = form.querySelector('[name="email"]').value.trim();
     const mod = form.querySelector('[name="module"]')?.value || '';
 
+    fields.forEach(f => f.classList.toggle('field-error', !f.value.trim()));
+    const emailField = form.querySelector('[name="email"]');
+    if (email && !/^\S+@\S+\.\S+$/.test(email)) emailField.classList.add('field-error');
+
     if (!selectedRating) { statusEl.textContent = 'Please select a star rating.'; statusEl.className = 'review-form-status error'; return; }
-    if (!title || !body || !name || !email) { statusEl.textContent = 'Please fill in all fields.'; statusEl.className = 'review-form-status error'; return; }
+    if (!title || !body || !name || !email) { statusEl.textContent = 'Please fill in the highlighted fields.'; statusEl.className = 'review-form-status error'; return; }
+    if (emailField.classList.contains('field-error')) { statusEl.textContent = 'Please enter a valid email address.'; statusEl.className = 'review-form-status error'; return; }
 
     submitBtn.disabled = true;
     submitBtn.textContent = 'Submitting\u2026';
